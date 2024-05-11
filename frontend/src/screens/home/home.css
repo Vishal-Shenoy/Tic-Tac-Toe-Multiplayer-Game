@@ -1,0 +1,23 @@
+.homeContainer {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.commonBtn {
+  height: 60px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roadrage";
+  background: rgba(255, 255, 255, 0.205);
+  box-shadow: 0 8px 32px 0 rgba(27, 37, 171, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: white;
+  border-radius: 5px;
+}

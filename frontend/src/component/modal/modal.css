@@ -1,0 +1,26 @@
+.modalContainer{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.26);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 99;
+}
+.modalInfoContainer{
+    width: 500px;
+    background-color: rgb(33, 33, 33);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    font-size: 30px;
+    font-family: "Roadrage";
+    text-align: center;
+    color: white;
+}
+.modalInfoContainer > p {
+    text-align: center;
+}
