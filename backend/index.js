@@ -11,6 +11,7 @@ const app = express();
 app.use(
     cors({
         origin: [process.env.ORIGIN, process.env.ORIGIN_GLOBAL],
+        methods: ["GET", "POST", "PUT"],
     })
 );
 app.use(express.json());
@@ -20,7 +21,7 @@ const server = createServer(app);
 
 const io = new Server(server, {
     pingTimeout: 60000,
-    cors: { origin: [process.env.ORIGIN, process.env.ORIGIN_GLOBAL] },
+    cors: { origin: [process.env.ORIGIN, process.env.ORIGIN_GLOBAL], methods: ["GET", "POST", "PUT"], },
 });
 
 app.use("/room", require("./routes/route.app"));
