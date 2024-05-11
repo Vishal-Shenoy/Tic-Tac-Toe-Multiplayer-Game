@@ -20,7 +20,7 @@ const server = createServer(app);
 
 const io = new Server(server, {
     pingTimeout: 60000,
-    cors: { origin: [process.env.ORIGIN] },
+    cors: { origin: [process.env.ORIGIN, process.env.ORIGIN_GLOBAL] },
 });
 
 app.use("/room", require("./routes/route.app"));
@@ -65,6 +65,6 @@ io.on("connection", (socket) => {
 });
 connection().then(() => {
     server.listen(process.env.PORT, () => {
-        console.log("server running at", process.env.PORT);
+        console.log("server running at", process.env.PORT, process.env.ORIGIN_GLOBAL);
     });
 });
