@@ -26,7 +26,7 @@ function Play() {
   // const [whichTurn, setWhichTurn] = useState(
   //   localStorage.getItem("whichTurn") || "X"
   // );
-  const socket = io("http://localhost:3001", { timeout: 10000 });
+  const socket = io(process.env.REACT_APP_BASE_URI, { timeout: 10000 });
   const [detect, setDetect] = useState(false);
   const [won, setWon] = useState({ display: false, message: "" });
   const [check, setCheck] = useState(true);

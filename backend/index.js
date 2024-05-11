@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: [process.env.ORIGIN],
+        origin: [process.env.ORIGIN, process.env.ORIGIN_GLOBAL],
     })
 );
 app.use(express.json());
