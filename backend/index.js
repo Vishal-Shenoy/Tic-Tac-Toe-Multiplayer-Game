@@ -66,6 +66,6 @@ io.on("connection", (socket) => {
 });
 connection().then(() => {
     server.listen(process.env.PORT, () => {
-        console.log("server running at", process.env.PORT, process.env.ORIGIN_GLOBAL);
+        console.log("server running at", process.env.PORT);
     });
 });

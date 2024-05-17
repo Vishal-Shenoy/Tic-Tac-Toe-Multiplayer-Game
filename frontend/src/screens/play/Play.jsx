@@ -1,5 +1,5 @@
-import { io } from "socket.io-client";
-import React, { useState, useEffect } from "react";
+import { io, Socket } from "socket.io-client";
+import React, { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import "./play.css";
 import Modal from "../../component/modal/Modal";
@@ -30,19 +30,18 @@ function Play() {
   const [detect, setDetect] = useState(false);
   const [won, setWon] = useState({ display: false, message: "" });
   const [check, setCheck] = useState(true);
+  const [timer, setTimer] = useState(true);
+  const [viewTimer, setViewTimer] = useState(0);
   let roomID = location?.state?.roomID;
 
-  console.log(location);
   useEffect(() => {
     socket.on(`${roomID}`, (data) => {
-      console.log(who, "this is who");
       const { roomID, index, value, turn } = data;
       boardData[index] = value;
       setDetect((prev) => !prev);
       localStorage.setItem("state", JSON.stringify(boardData));
       localStorage.setItem("whichTurn", whichTurn == "X" ? "O" : "X");
       handleWin();
-      // setWhichTurn((prev) => (prev == "X" ? "O" : "X"));
       whichTurn = whichTurn == "X" ? "O" : "X";
     });
   }, []);
@@ -59,7 +58,6 @@ function Play() {
       localStorage.setItem("who", who);
       localStorage.setItem("whichTurn", "X");
       whichTurn = "X";
-      // setWhichTurn("X");
       setCheck(true);
       setWon({ display: false, message: "" });
     });
@@ -79,7 +77,7 @@ function Play() {
   }, []);
 
   const handleUserClick = (index) => {
-    console.log(who, whichTurn);
+    // console.log(who, whichTurn);
     if (who == whichTurn && check) {
       socket.emit("user-clicks", {
         roomID: roomID,
@@ -128,13 +126,16 @@ function Play() {
                   className="box"
                   id={item == "X" ? "square" : item === "O" ? "circle" : ""}
                   onClick={() => item == 0 && handleUserClick(index)}
+                  key={index}
                 >
                   {item != 0 && item}
                 </div>
               );
             })}
         </div>
-
+        <div id={who == "X" ? "Xturn" : "Oturn"} className="timerContainer">
+          {!won.display && who == whichTurn && "Your Turn"}
+        </div>
         {won.display && (
           <Modal handleRestart={handleRestart} message={won.message} />
         )}

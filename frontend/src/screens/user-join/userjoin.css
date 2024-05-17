@@ -23,6 +23,7 @@
     -webkit-backdrop-filter: blur(20px);
     color: white;
     border-radius: 5px;
+    border: none;
 }
 
 .btnHolder {
@@ -38,4 +39,6 @@
     -webkit-backdrop-filter: blur(20px);
     color: white;
     border-radius: 5px;
+    cursor: pointer;
+    border: none;
 }
